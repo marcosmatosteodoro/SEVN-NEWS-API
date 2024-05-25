@@ -1,5 +1,6 @@
 import cors from 'cors';
-import express, { Request, Response } from "express";
+import express from "express";
+import { notFound } from './controllers/notFound.controllers';
 import router from "./router";
 
 class App {
@@ -23,9 +24,7 @@ class App {
   }
 
   private notFoundHandler() {
-    this.server.use((req: Request, res: Response) => {
-      res.status(404).json({ message: 'Not Found' });
-    });
+    this.server.use(notFound.index);
   }
 }
 
