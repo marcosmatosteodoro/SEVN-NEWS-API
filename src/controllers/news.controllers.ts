@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import rawData from "../data/data.json";
-import { News } from "../domain";
+import { News, NewsHeadline, NewsSecondary } from "../domain";
 
 class NewsController {
   private data: News[];
@@ -21,19 +21,38 @@ class NewsController {
   }
 
   public show (req: Request, res: Response) {
-    res.json(
-      this.data
-    );
+    const id = req.params.id;
+    const record = this.data.find((record: News) => record.id === id);
+
+    if (record) {
+      res.json(record as News);
+    } else {
+      res.status(404).send("Record not found");
+    }
   }
+
   public headline (req: Request, res: Response) {
-    res.json(
-      this.data
-    );
+    const records = this.data
+      .filter((record: News) => record.headline)
+      .map(({ headline, content, first_sentence, ...rest }) => rest);
+
+    if (records) {
+      res.json(records as NewsHeadline[]);
+    } else {
+      res.status(404).json({ message: 'Headline news not found' });
+    }
   }
+
   public secondary (req: Request, res: Response) {
-    res.json(
-      this.data
-    );
+    const records = this.data
+      .filter((record: News) => !record.headline)
+      .map(({ image, headline, ...rest }) => rest);
+
+    if (records) {
+      res.json(records as NewsSecondary[]);
+    } else {
+      res.status(404).json({ message: 'Secondary news not found' });
+    }
   }
 }
 
