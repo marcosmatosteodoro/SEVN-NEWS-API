@@ -1,11 +1,10 @@
-import { Request, Response, Router } from "express";
+import { Router } from "express";
+import { newsController } from "./controllers/news.controllers";
 
 const router: Router = Router();
 
 
-router.get("/", (req: Request, res: Response) => {
-  res.json({ message: 'test' });
-});
+router.get("/news", newsController.index);
 
 
 export default router;
