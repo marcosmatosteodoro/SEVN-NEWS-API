@@ -1,6 +1,7 @@
 import cors from 'cors';
 import express, { Request, Response } from "express";
 import router from "./router";
+
 class App {
   public server: express.Application
 
@@ -17,6 +18,7 @@ class App {
   }
 
   private router(){
+    this.server.use('/assets', express.static("./public/assets"));
     this.server.use(router)
   }
 
