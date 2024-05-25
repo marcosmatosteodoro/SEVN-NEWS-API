@@ -1,5 +1,5 @@
 import cors from 'cors';
-import express from "express";
+import express, { Request, Response } from "express";
 import router from "./router";
 class App {
   public server: express.Application
@@ -8,6 +8,7 @@ class App {
     this.server = express()
     this.middleware()
     this.router()
+    this.notFoundHandler();
   }
 
   private middleware(){
@@ -17,6 +18,12 @@ class App {
 
   private router(){
     this.server.use(router)
+  }
+
+  private notFoundHandler() {
+    this.server.use((req: Request, res: Response) => {
+      res.status(404).json({ message: 'Not Found' });
+    });
   }
 }
 
