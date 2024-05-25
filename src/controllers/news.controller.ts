@@ -27,7 +27,7 @@ class NewsController {
     if (record) {
       res.json(record as News);
     } else {
-      res.status(404).send("Record not found");
+      res.status(404).json("Record not found");
     }
   }
 
