@@ -1,6 +1,6 @@
 import cors from 'cors';
 import express from "express";
-import { notFound } from './controllers/notFound.controllers';
+import { notFound } from './controllers';
 import router from "./router";
 
 class App {
