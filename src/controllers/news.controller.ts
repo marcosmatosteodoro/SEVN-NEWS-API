@@ -34,7 +34,7 @@ class NewsController {
   public headline (req: Request, res: Response) {
     const records = this.data
       .filter((record: News) => record.headline)
-      .map(({ headline, content, first_sentence, ...rest }) => rest);
+      .map(({ headline, content, first_sentence, created_at, author, ...rest }) => rest);
 
     if (records) {
       res.json(records as NewsHeadline[]);
@@ -46,7 +46,7 @@ class NewsController {
   public secondary (req: Request, res: Response) {
     const records = this.data
       .filter((record: News) => !record.headline)
-      .map(({ image, headline, ...rest }) => rest);
+      .map(({ image, headline, created_at, author, ...rest }) => rest);
 
     if (records) {
       res.json(records as NewsSecondary[]);
