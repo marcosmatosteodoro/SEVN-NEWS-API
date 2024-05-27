@@ -25,7 +25,7 @@ Caso queira executar em outra Porta crie um arquivo `.env` e adicione a porta de
 
 Este projeto não tem banco de dados, apenas um arquivo data.json com algumas informações e está usando typescript
 
-Éxiste apenas 3 endpoints
+## Endpoints
 - ```/news/headline```
   - Traz informações pertinentes das manchetes atuais
 - ```/news/secondary```
