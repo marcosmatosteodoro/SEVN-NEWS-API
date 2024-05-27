@@ -13,7 +13,6 @@ class NewsController {
     this.secondary = this.secondary.bind(this);
   }
 
-
   public index (req: Request, res: Response) {
     res.json(
       this.data
